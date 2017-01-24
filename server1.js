@@ -6,17 +6,24 @@ const httpProxy = require('http-proxy')
 const app = express()
 
 const PORT = 9998
+const PORT_PROXY = 9999
 
 const SECURE_OPTIONS = {
   ca: [
     fs.readFileSync(path.join(__dirname, 'crt/server.csr'))
   ],
-  cert: fs.readFileSync(path.join(__dirname, 'crt/server.crt')),
-  key: fs.readFileSync(path.join(__dirname, 'crt/server.key'))
+  cert: fs.readFileSync(path.join(__dirname, 'crt/server.crt'), 'utf-8'),
+  key: fs.readFileSync(path.join(__dirname, 'crt/server.key'), 'utf-8')
 }
 
 let proxyServer = httpProxy.createProxyServer({
-  target: 'https://localhost:9999'
+  target: {
+    host: 'localhost',
+    port: 9999
+  },
+  agent: https.globalAgent,
+  ssk: SECURE_OPTIONS,
+  secure: true
 })
 
 proxyServer.on('proxyReq', (proxyReq, req) => {
