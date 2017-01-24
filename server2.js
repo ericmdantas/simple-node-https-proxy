@@ -9,10 +9,10 @@ const PORT = 9999
 
 const SECURE_OPTIONS = {
   ca: [
-    fs.readFileSync(path.join(__dirname, 'crt/server.csr'))
+    fs.readFileSync('crt/server.csr')
   ],
-  cert: fs.readFileSync(path.join(__dirname, 'crt/server.crt')),
-  key: fs.readFileSync(path.join(__dirname, 'crt/server.key'))
+  cert: fs.readFileSync('crt/server.crt', 'utf-8'),
+  key: fs.readFileSync('crt/server.key', 'utf-8')
 }
 
 app.get('/api/server2', (req, res) => {

@@ -10,20 +10,21 @@ const PORT_PROXY = 9999
 
 const SECURE_OPTIONS = {
   ca: [
-    fs.readFileSync(path.join(__dirname, 'crt/server.csr'))
+    fs.readFileSync('crt/server.csr')
   ],
-  cert: fs.readFileSync(path.join(__dirname, 'crt/server.crt'), 'utf-8'),
-  key: fs.readFileSync(path.join(__dirname, 'crt/server.key'), 'utf-8')
+  cert: fs.readFileSync('crt/server.crt', 'utf-8'),
+  key: fs.readFileSync('crt/server.key', 'utf-8')
 }
 
 let proxyServer = httpProxy.createProxyServer({
   target: {
     host: 'localhost',
-    port: 9999
+    port: 9999,
+    https: true
   },
   agent: https.globalAgent,
-  ssk: SECURE_OPTIONS,
-  secure: true
+  ssl: SECURE_OPTIONS,
+  secure: false
 })
 
 proxyServer.on('proxyReq', (proxyReq, req) => {
