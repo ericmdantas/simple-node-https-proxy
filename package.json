@@ -1,0 +1,24 @@
+{
+  "name": "simple-node-https-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"node server1\" \"node server2\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericmdantas/simple-node-https-proxy.git"
+  },
+  "author": "Eric Mendes Dantas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericmdantas/simple-node-https-proxy/issues"
+  },
+  "homepage": "https://github.com/ericmdantas/simple-node-https-proxy#readme",
+  "dependencies": {
+    "concurrently": "^3.1.0",
+    "express": "^4.14.0",
+    "http-proxy": "^1.16.2"
+  }
+}
