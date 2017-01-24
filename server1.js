@@ -17,11 +17,7 @@ const SECURE_OPTIONS = {
 }
 
 let proxyServer = httpProxy.createProxyServer({
-  target: {
-    host: 'localhost',
-    port: 9999,
-    https: true
-  },
+  target: 'https://localhost:9999',
   agent: https.globalAgent,
   ssl: SECURE_OPTIONS,
   secure: false
